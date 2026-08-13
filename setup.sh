@@ -100,15 +100,6 @@ docker compose run --rm api python manage.py migrate
 docker compose down
 docker compose up -d api db cache worker mailpit
 
-echo "Waiting for the API to become ready..."
-until curl -sf http://localhost:8000/graphql/ -o /dev/null; do
-    echo "API not ready yet, retrying in 2s..."
-    sleep 2
-done
-echo "API is up."
-
-docker compose run --rm api python manage.py migrate
-
 echo "===================================================="
 echo "Creating Superuser..."
 echo "===================================================="
