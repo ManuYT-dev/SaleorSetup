@@ -1,3 +1,10 @@
+### Setup Linux
+git clone https://github.com/ManuYT-dev/SaleorSetup.git
+cd ./SaleorSetup
+cp .env.example .env # change values in the new .env
+chmod 770 setup.sh
+./setup.sh
+
 ### Nice commands:
 ```bash
 # Backup DB
@@ -8,6 +15,9 @@ docker run --rm -v saleor-media:/media-data -v backup/path:/backup alpine tar -c
 
 # Restore DB
 Get-Content \path\to\backup.sql | docker compose exec -T db psql -U saleor -d saleor
+
+# Populate DB
+docker compose run --rm api python3 manage.py populatedb
 ```
 
 ### Changes before deploy
